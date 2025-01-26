@@ -1,0 +1,141 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Website</title>
+        <style>
+            body {
+                background-color: orange;
+            }
+            #generate {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: auto;
+                text-align: center;
+                padding: 15px 25px;
+                font-size: 24px;
+                cursor: pointer;
+                outline: none;
+                color: #fff;
+                background-color: #04AA6D;
+                border: none;
+                border-radius: 30px;
+                box-shadow: 0px 9px #999;
+            }
+            #generate:hover {background-color: #3e8e41; text-align: center; margin: auto;}
+            #generate:active {
+                margin: auto;
+                text-align: center;
+                background-color: #3e8e41;
+                box-shadow: 0 5px #666;
+                transform: translateY(4px);
+            }
+            label {
+                text-align: center;
+                display: block;
+                margin: 0px;
+                padding: 0px;
+            }
+            select {
+                text-align: center;
+                width: 150px;
+                height: 30px;
+            }
+            .certificate {
+                background-color: white;
+                border: 10px double red;
+                width: 700px;
+                margin: auto;
+                margin-top: 20px;
+                padding: 5px;
+            }
+            .container {
+                margin: auto;
+                background-color: yellow;
+                border: 2px solid blue;
+                border-top: 10px solid darkviolet;
+                padding: 20px;
+                width: 800px;
+            }
+        </style>
+    </head>
+    <body>
+        <!--
+        Website container:
+            1. Fun Certificates - half done
+            2. BFF Challange - pending
+            3. Voting - pending
+            4. Video Games - pending
+            5. Drawing-guessing-game - pending
+        -->
+        <!--Asks for type of certificate-->
+        <br>
+        <div class="container">
+        <label><h2>Certificate for</h2> <br>
+            <select id="type">
+                <option value="Achievement">Achievement</option>
+                <option value="Recognition">Recognition</option>
+                <option value="Appreciation">Appreciation</option>
+                <option value="Award">Award</option>
+                <option value="Sports">Sports</option>
+                <option value="Blue">Blue</option>
+                <option value="Attendance">Attendance</option>
+                <option value="Excellence">Excellence</option>
+            </select>
+        <br>
+        </label>
+        <!--Asks for full name-->
+        <label><h2>This Certificate Is Proudly Awarded To</h2><br>
+            <input id="name" type="text">
+        </label>
+        <br>
+        <!--Asks what did you do/what are you-->
+        <label><h2>For Being a/an</h2><br>
+            <select id="reason">
+                <option value="Laughing Lion">Laughing lion</option>
+                <option value="Dancing Kangaroo">Dancing kangaroo</option>
+                <option value="Crazy Artist">Crazy artist</option>
+                <option value="Awesome Athelete">Awesome athelete</option>
+                <option value="Masterful Musician">Masterful musician</option>
+                <option value="Splendid Speller">Splendid speller</option>
+                <option value="Sassy Sport">Sassy sport</option>
+                <option value="Maths Wiz">Maths wiz</option>
+                <option value="Super Sharer">Super sharer</option>
+                <option value="Handy Helper">Handy helper</option>
+                <option value="Smelly Skunk">Smelly skunk</option>
+                <option value="other">Other</option>
+            </select>
+        </label>
+        <br>
+        <!--Asks who will present the certificate-->
+        <label><h2>Presented by:-</h2><br>
+            <input id="p-name" type="text">
+        </label>
+        <br>
+        <!--button which generates certificate-->
+        <button id="generate" type="button">Generate Certificate</button>
+        <!--Certificate div-->
+        <div id="certificate"></div>
+        </div>
+        <script>
+            var gen = document.getElementById("generate");
+            var certificate = document.getElementById("certificate");
+            var onButtonClick = function() {
+                var reason = document.getElementById("reason").value;
+                var type = document.getElementById("type").value;
+                var name = document.getElementById("name").value;
+                var pName = document.getElementById("p-name").value;
+                if (certificate.innerHTML.includes('Certificate for:<input id="or">')) {
+                    certificate.innerHTML = '<h1 style="text-align: center;">Certificate of '+type+'</h1><h2 style="text-align: center;">This Certificate Is Proudly Awarded To </h2><h1 style="text-decoration: underline 3px solid red; font-family: lucida Handwriting, cursive ; text-align: center; color: blue;">'+name+'</h1><br> <h2 style="text-align: center;">For Being a/an </h2> <br><h1 style="text-align: center;">'+or.value+'</h1><br><h4>Presented by: <span style="text-decoration: underline 1px rgb(161, 161, 161); font-family: lucida Handwriting, cursive;">'+pName+'</span></h4>';
+                } else if (reason === "other") {
+                    certificate.innerHTML = 'Certificate for:<input id="or">';
+                } else {
+                    certificate.innerHTML = '<h1 style="text-align: center;">Certificate of '+type+'</h1><h2 style="text-align: center;">This Certificate Is Proudly Awarded To </h2><h1 style="text-decoration: underline 3px solid red; font-family: lucida Handwriting, cursive ; text-align: center; color: blue;">'+name+'</h1><br> <h2 style="text-align: center;">For Being a/an </h2> <br><h1 style="text-align: center;">'+reason+'</h1><br><h4>Presented by: <span style="text-decoration: underline 1px rgb(161, 161, 161); font-family: lucida Handwriting, cursive;">'+pName+'</span></h4>';
+                }
+                certificate.className = "certificate";
+            }
+            gen.addEventListener("click", onButtonClick);
+        </script>
+    </body>
+</html>
