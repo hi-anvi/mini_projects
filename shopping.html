@@ -89,6 +89,11 @@
                 height: 5px;
                 border: 2px solid black;
             }
+            #party {
+                width: 400px;
+                margin: 10px;
+                border: 10px ridge red;
+            }
         </style>
     </head>
     <body>
@@ -178,7 +183,8 @@
                 }
                 if (wrong === 0) {
                     extraText.innerHTML = "YOU DID IT!!! You got all the stuff you needed!! Now you can plan your party!!<br>"
-                    +"<img href='https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?cs=srgb&dl=pexels-wendywei-1190298.jpg&fm=jpg' alt='Party'>";
+                    +"<img src='https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?cs=srgb&dl=pexels-wendywei-1190298.jpg&fm=jpg' alt='Party' id='party'>";
+                    extraText.style.backgroundColor = "greenyellow"
                 }
             };
 
