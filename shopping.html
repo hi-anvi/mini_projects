@@ -97,25 +97,25 @@
             <h4>
                 <span>12 Pack Eggs</span>
                 <span>Avocado</span>
-                <span class="need">Jelly</span>
+                <span class="1 need">Jelly</span>
                 <span>Carrots</span>
-                <span class="need">Pure Almond Oil</span>
+                <span class="2 need">Pure Almond Oil</span>
                 <span>Cabbage</span>
                 <span>Coconut Oil</span>
-                <span class="need">Cauliflower</span>
+                <span class="3 need">Cauliflower</span>
                 <span>Lays Chips</span>
                 <span>Water Bottle</span>
-                <span class="need">6 Pack Eggs</span>
+                <span class="1 need">6 Pack Eggs</span>
                 <span>Potatoes</span>
                 <span>Papaya</span>
                 <span>Cucumber</span>
                 <span>White Bread</span>
-                <span class="need">Brown Bread</span>
+                <span class="1 need">Brown Bread</span>
                 <span>1 Dozen Bananas</span>
                 <span>Juice</span>
                 <span>Oreo Biscuts</span>
-                <span class="need">Coca Cola</span>
-                <span class="need">0.5 Kg Tomatoes</span>
+                <span class="2 need">Coca Cola</span>
+                <span class="3 need">0.5 Kg Tomatoes</span>
                 <span>Olive Oil</span>
                 <span>Oranges</span>
                 <span>Apples</span>
@@ -123,6 +123,8 @@
             <div id="rode"></div>
             <div id="rode1"></div>
             <div id="rode2"></div>
+            <h3 id="extra-text">Lets go shopping!! Hi there! I am planning a party but I need some stuff. Please help me! Click on the items to collect them. The items you will not need will
+             not be put in the cart. The more you click on the item, the more number of times it shall be put in the cart!!</h3>
         </div>
         <div id="pin"></div>
         <div id="shopping-list">
@@ -138,18 +140,45 @@
             </ol>
         </div>
         <script>
-            // take arguments
+            // Take arguments and create arguments
             var items = document.getElementsByTagName("span");
             var needs = document.getElementsByClassName("need");
+            var numClick = [0, 0, 0, 0, 0, 0, 0];
+            var extraText = document.getElementById("extra-text");
+            var wrong = 0;
 
             // Create function
             var getCorrectItem = function() {
-                var clickedOn = event.target.className === "need";
+                var clickedOn = event.target.className.includes("need");
                 if (clickedOn) {
+                    var numNeed = parseFloat(event.target.className);
+                    console.log(numNeed)
+                    for (var i = 0; i < needs.length; i++) {
+                        if (event.target === needs[i]) {
+                            numClick[i]++;
+                            if (numClick[i] === numNeed) {
+                                event.target.textContent = "Well done!!";
+                                event.target.style.backgroundColor = "Green";
+                            } else if (numClick[i] > numNeed) {
+                                event.target.textContent = "Thats too much! Please restart the game!";
+                                event.target.style.backgroundColor = "Orange";
+                            } 
+                        }
+                    }
                     console.log(event.target.className);
                 } else {
                     event.target.textContent = "You don't need this!!";
                     event.target.style.backgroundColor = "Red";
+                }
+                var wrong = 0;
+                for(var i = 0; i < needs.length; i++) {
+                    if (needs[i].textContent !== "Well done!!") {
+                        wrong ++;
+                    }
+                }
+                if (wrong === 0) {
+                    extraText.innerHTML = "YOU DID IT!!! You got all the stuff you needed!! Now you can plan your party!!<br>"
+                    +"<img href='https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?cs=srgb&dl=pexels-wendywei-1190298.jpg&fm=jpg' alt='Party'>";
                 }
             };
 
