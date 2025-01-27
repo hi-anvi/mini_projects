@@ -4,10 +4,14 @@
         <meta charset="utf-8">
         <title>Shopping</title>
         <style>
+            body {
+                background-color: darkblue;
+            }
             .heading {
                 font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             }
             #shopping-list {
+                z-index: 1;
                 background-color: bisque;
                 border: 1px dashed black;
                 font-family: Arial, Helvetica, sans-serif;
@@ -19,28 +23,71 @@
                 right: 20px;
                 top: 80px;
             }
+            #pin {
+                z-index: 2;
+                position: absolute;
+                border: 2px solid black;
+                border-radius: 40px;
+                width: 20px;
+                height: 20px;
+                background-color: greenyellow;
+                right: 150px;
+                top: 75px;
+            }
             li {
-                margin: 5px;
+                margin-bottom: 10px;
             }
             #container {
                 position: relative;
-                height: 300px;
-                left: 250px;
+                height: 780px;
                 background-color: aqua;
-                width: 850px;
+                width: 1135px;
                 padding: 10px;
+                margin: 5px;
             }
             span {
-                position: relative;
-                width: 50px;
+                display: inline-flex;
+                flex-wrap: wrap;
+                width: 105px;
                 height: 100px; 
-                font-family: 'Courier New', Courier, monospace;
+                font-family: Courier New, Courier, monospace;
                 border: 2px solid brown;
                 border-radius: 10px;
                 margin: 5px;
-                margin-bottom: 10px;
                 padding: 2px;
                 background-color: antiquewhite;
+            }
+            span:hover {
+                width: 115px;
+                margin-right: 0px;
+                margin-bottom: 0px;
+            }
+            #rode {
+                position: absolute;
+                top: 202px;
+                left: 0px;
+                background-color: brown;
+                width: 99.5%;
+                height: 5px;
+                border: 2px solid black;
+            }
+            #rode1 {
+                position: absolute;
+                top: 320px;
+                left: 0px;
+                background-color: brown;
+                width: 99.5%;
+                height: 5px;
+                border: 2px solid black;
+            }
+            #rode2 {
+                position: absolute;
+                top: 438px;
+                left: 0px;
+                background-color: brown;
+                width: 99.5%;
+                height: 5px;
+                border: 2px solid black;
             }
         </style>
     </head>
@@ -48,18 +95,36 @@
         <div id="container">
             <h1 class="heading">Shopping</h1>
             <h4>
+                <span>12 Pack Eggs</span>
+                <span>Avocado</span>
                 <span class="need">Jelly</span>
+                <span>Carrots</span>
                 <span class="need">Pure Almond Oil</span>
                 <span>Cabbage</span>
+                <span>Coconut Oil</span>
                 <span class="need">Cauliflower</span>
-                <span >Water Bottle</span>
+                <span>Lays Chips</span>
+                <span>Water Bottle</span>
                 <span class="need">6 Pack Eggs</span>
+                <span>Potatoes</span>
+                <span>Papaya</span>
+                <span>Cucumber</span>
                 <span>White Bread</span>
                 <span class="need">Brown Bread</span>
+                <span>1 Dozen Bananas</span>
+                <span>Juice</span>
+                <span>Oreo Biscuts</span>
                 <span class="need">Coca Cola</span>
-                <span class="need">Tomatoes</span>
+                <span class="need">0.5 Kg Tomatoes</span>
+                <span>Olive Oil</span>
+                <span>Oranges</span>
+                <span>Apples</span>
             </h4>
+            <div id="rode"></div>
+            <div id="rode1"></div>
+            <div id="rode2"></div>
         </div>
+        <div id="pin"></div>
         <div id="shopping-list">
             <h3 class="heading">Shopping List</h3>
             <ol>
@@ -69,10 +134,8 @@
                 <li>Tomatoes - 1.5 Kg</li>
                 <li>Coca Cola - 2 Bottles</li>
                 <li>Brown Bread - 1 Pack</li>
-                <li>Eggs - 1 Pack of 6</li>
+                <li>Eggs - 1 Pack of 6 Eggs</li>
             </ol>
         </div>
-
-        <script></script>
     </body>
 </html>
