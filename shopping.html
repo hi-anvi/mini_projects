@@ -137,5 +137,27 @@
                 <li>Eggs - 1 Pack of 6 Eggs</li>
             </ol>
         </div>
+        <script>
+            // take arguments
+            var items = document.getElementsByTagName("span");
+            var needs = document.getElementsByClassName("need");
+
+            // Create function
+            var getCorrectItem = function() {
+                var clickedOn = event.target.className === "need";
+                if (clickedOn) {
+                    console.log(event.target.className);
+                } else {
+                    event.target.textContent = "You don't need this!!";
+                    event.target.style.backgroundColor = "Red";
+                }
+            };
+
+            // Execute function using event listener
+            for (var i = 0; i < items.length; i++) {
+                items[i].addEventListener("click", getCorrectItem);
+            }
+
+        </script>
     </body>
 </html>
