@@ -94,6 +94,17 @@
                 margin: 10px;
                 border: 10px ridge red;
             }
+            #whole-timer {
+                font-family: Courier New, Courier, monospace;
+                color: white;
+                right: 140px;
+                top: 450px;
+                position: absolute;
+                border: 2px solid white;
+                border-radius: 5px;
+                height: 20px;
+                padding: 5px; 
+            }
         </style>
     </head>
     <body>
@@ -133,6 +144,7 @@
         </div>
         <div id="pin"></div>
         <div id="shopping-list"></div>
+        <h3 id="whole-timer">Timer: <div id="timer">0</div></h3>
         <script>
             // Get variables
             var items = document.getElementsByTagName("span");
@@ -164,10 +176,22 @@
                         + needs[4] + ' - ' + num[4] + '</li><li>' + needs[5] 
                             + ' - ' + num[5] + '</li><li>' + needs[6] 
                                 + ' - ' + num[6] + '</li></ol>';
-        
-        </script>
+            
+            /********
+             * Put timer
+            ********/
 
-        <script>
+            // get variables
+            var timer = document.getElementById("timer");
+
+            // function
+            var addSec = function() {
+                timeCurr = parseFloat(timer.textContent);
+                timer.textContent = timeCurr + 1;
+            };
+
+            // excecute
+            var Timer = window.setInterval(addSec, 1000);
 
             // Take arguments and create arguments
             var items = document.getElementsByTagName("span");
