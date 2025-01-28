@@ -138,29 +138,37 @@
             var items = document.getElementsByTagName("span");
             var needs = []
             var list = document.getElementById("shopping-list");
+            var num = []
 
             // Create a for loop
             for (var i = 0; i < 7; i++) {
 
                 // Create random
-                var ranNum = Math.floor(Math.random() * 24);
-                var ranFood = Math.floor(Math.random() * 3);
-                console.log(ranFood)
-
-                //Check if item chosen all ready taken
-                while (needs.includes(items[ranFood])) {
-                    ranFood = Math.floor(Math.random(items.length));
+                var ranNum = Math.floor(Math.random() * 3);
+                var ranFood = Math.floor(Math.random() * items.length);
+                // Check if item chosen all ready taken
+                while (needs.includes(items[ranFood].innerHTML)) {
+                    ranFood = Math.floor(Math.random() * items.length);
                 }
-
                 // Add it a class and put it in needs
-                items[ranFood].className +=  ranNum + " needs";
-                needs.push(items[ranFood]);
+                items[ranFood].className =  (ranNum + 1) + " need";
+                console.log(items[ranFood].className);
+                needs.push(items[ranFood].innerHTML);
+                num.push(ranNum + 1);
             }
 
             // Fix the list to show the actual list
-            list.innerHTML = '<h3 class="heading">Shopping List</h3><ol><li>' + needs[0] +'</li><li>' + needs[1] +'</li><li>' + needs[2] +'</li><li>' + needs[3] +'</li><li>' + needs[4] +'</li><li>' + needs[5] +'</li><li>' + needs[6] +'</li></ol>';
-            </script>
-            <script>
+            list.innerHTML = '<h3 class="heading">Shopping List</h3><ol><li>' 
+                + needs[0] +' - ' + num[0] + '</li><li>' + needs[1] + ' - ' + num[1] + '</li><li>' 
+                    + needs[2] +  ' - ' + num[2] +'</li><li>' + needs[3] + ' - ' + num[4] + '</li><li>' 
+                        + needs[4] + ' - ' + num[4] + '</li><li>' + needs[5] 
+                            + ' - ' + num[5] + '</li><li>' + needs[6] 
+                                + ' - ' + num[6] + '</li></ol>';
+        
+        </script>
+
+        <script>
+
             // Take arguments and create arguments
             var items = document.getElementsByTagName("span");
             var needs = document.getElementsByClassName("need");
@@ -173,7 +181,6 @@
                 var clickedOn = event.target.className.includes("need");
                 if (clickedOn) {
                     var numNeed = parseFloat(event.target.className);
-                    console.log(numNeed)
                     for (var i = 0; i < needs.length; i++) {
                         if (event.target === needs[i]) {
                             numClick[i]++;
@@ -186,7 +193,6 @@
                             } 
                         }
                     }
-                    console.log(event.target.className);
                 } else {
                     event.target.textContent = "You don't need this!!";
                     event.target.style.backgroundColor = "Red";
