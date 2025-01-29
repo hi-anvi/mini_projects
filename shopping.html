@@ -95,6 +95,8 @@
                 border: 10px ridge red;
             }
             #whole-timer {
+                display: inline-flex;
+                flex-wrap: wrap;
                 font-family: Courier New, Courier, monospace;
                 color: white;
                 right: 140px;
@@ -104,6 +106,24 @@
                 border-radius: 5px;
                 height: 20px;
                 padding: 5px; 
+            }
+            #restart {
+                display: inline-flex;
+                flex-wrap: wrap;
+                font-family: Courier New, Courier, monospace;
+                color: white;
+                background-color: darkblue;
+                right: 150px;
+                top: 520px;
+                position: absolute;
+                border: 2.5px solid white;
+                border-radius: 30px;
+                height: 50px;
+                /*width: 100px;*/
+                padding: 15px; 
+            }
+            #restart:hover {
+                background-color: blue;
             }
         </style>
     </head>
@@ -145,6 +165,8 @@
         <div id="pin"></div>
         <div id="shopping-list"></div>
         <h3 id="whole-timer">Timer: <div id="timer">0</div></h3>
+        <h3><button id="restart">Restart</button></h3>
+
         <script>
             // Get variables
             var items = document.getElementsByTagName("span");
@@ -199,6 +221,7 @@
             var numClick = [0, 0, 0, 0, 0, 0, 0];
             var extraText = document.getElementById("extra-text");
             var wrong = 0;
+            var button = document.getElementById("restart");
 
             // Create function
             var getCorrectItem = function() {
@@ -230,16 +253,23 @@
 
                 // Sets ending statments with conditions
                 if (wrong === 0) {
-                    extraText.innerHTML = "YOU DID IT!!! You got all the stuff you needed!! Now you can plan your party!!<br>"
+                    window.clearInterval(Timer);
+                    extraText.innerHTML = "YOU DID IT!!! You got all the stuff you needed!! Now you can plan your party!!<br> You took just " + timeCurr + "<br>"
                     +"<img src='https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?cs=srgb&dl=pexels-wendywei-1190298.jpg&fm=jpg' alt='Party' id='party'>";
-                    extraText.style.backgroundColor = "greenyellow"
+                    extraText.style.backgroundColor = "greenyellow";
                 }
+            };
+
+            var onButtonClick = function() {
+                window.location.reload();
             };
 
             // Execute function using event listener
             for (var i = 0; i < items.length; i++) {
                 items[i].addEventListener("click", getCorrectItem);
             }
+            button.addEventListener("click", onButtonClick);
+
 
         </script>
     </body>
