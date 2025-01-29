@@ -131,7 +131,7 @@
         <div id="container">
             <h1 class="heading">Shopping</h1>
             <h4>
-                <span>12 Pack Eggs</span>
+                <span>Flour</span>
                 <span>Avocado</span>
                 <span>Jelly</span>
                 <span>Carrots</span>
@@ -231,6 +231,7 @@
                     for (var i = 0; i < needs.length; i++) {
                         if (event.target === needs[i]) {
                             numClick[i]++;
+                            event.target.textContent += numClick[i];
                             if (numClick[i] === numNeed) {
                                 event.target.textContent = "Well done!!";
                                 event.target.style.backgroundColor = "Green";
@@ -254,7 +255,7 @@
                 // Sets ending statments with conditions
                 if (wrong === 0) {
                     window.clearInterval(Timer);
-                    extraText.innerHTML = "YOU DID IT!!! You got all the stuff you needed!! Now you can plan your party!!<br> You took just " + timeCurr + "<br>"
+                    extraText.innerHTML = "YOU DID IT!!! You got all the stuff you needed!! Now you can plan your party!!<br> You took just " + timeCurr + " seconds!! <br>"
                     +"<img src='https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?cs=srgb&dl=pexels-wendywei-1190298.jpg&fm=jpg' alt='Party' id='party'>";
                     extraText.style.backgroundColor = "greenyellow";
                 }
