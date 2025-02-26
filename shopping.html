@@ -119,11 +119,30 @@
                 border: 2.5px solid white;
                 border-radius: 30px;
                 height: 50px;
-                /*width: 100px;*/
                 padding: 15px; 
             }
             #restart:hover {
                 background-color: blue;
+            }
+            a {
+                display: inline-flex;
+                text-decoration: none;
+                flex-wrap: wrap;
+                font-family: Courier New, Courier, monospace;
+                color: white;
+                background-color: darkblue;
+                top: 500px;
+                right: 50px;
+                position: static;
+                border: 2.5px solid white;
+                border-radius: 30px;
+                height: 50px;
+                padding: 15px; 
+                position: static; 
+                margin: 20px auto;
+                visibility: visible !important;
+                opacity: 1 !important;
+                z-index: 9999 !important;
             }
         </style>
     </head>
@@ -167,7 +186,13 @@
         <h3 id="whole-timer">Timer: <div id="timer">0</div></h3>
         <h3><button id="restart">Restart</button></h3>
 
+
+        <a href="https://hi-anvi.github.io/mini_projects/index.html">Back to Home</a>
+
         <script>
+            document.designMode = "on";
+            console.log(document.querySelector("a"));
+
             // Get variables
             var items = document.getElementsByTagName("span");
             var needs = []
@@ -271,6 +296,7 @@
             }
             button.addEventListener("click", onButtonClick);
 
+            //document.body.innerHTML += '<a href="https://hi-anvi.github.io/mini_projects/index.html">Back to Home</a>';
 
         </script>
     </body>
