@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8">
         <title>Find out your way to learn</title>
+        <style>
+        </style>
     </head>
     <body>
         <!--
@@ -13,7 +15,7 @@
         -->
 
         <div id="done-bar"></div>
-        <div class="question">
+        <div class="question" id="1">
             <h1>When I learn from the Internet I like:</h1>
             <div>
                 <label><input type="checkbox" name="K" value="K" onclick="onSelect( this );">See videos showing how to do it<br></label>
@@ -22,7 +24,7 @@
                 <label><input type="checkbox" name="R" value="R" onclick="onSelect( this );">Read instructions and expanations<br></label>
             </div>
         </div>
-        <div class="question">
+        <div class="question" id="2">
             <h1>I want to learn how to play a new board game or card game. I would:</h1>
             <div>
                 <label><input type="checkbox" name="V" value="V" onclick="onSelect( this );">Use diagrams which explain the rules and tactics<br></label>
@@ -31,15 +33,24 @@
                 <label><input type="checkbox" name="R" value="R" onclick="onSelect( this );">Read instructions and expanations<br></label>
             </div>
         </div>
-        <label><input type="submit" id="next">Next</label>
+        <label><input type="submit" id="next"></label>
 
         <script>
             // Add variables
             var nameArray = [];
             var next = document.getElementById("next");
             var ques = document.getElementsByClassName("question");
+            var quesId = [];
 
-            // On seleccting an answer add it to array
+            // Add info to quesId
+            for (var j = 1; j <= 2; j++) {
+                quesId.push(document.getElementById(j.toString()));
+            }
+
+            quesId[1].style.display = "none";
+            quesId[0].style.display = "block";
+
+            // On selecting an answer add it to array
             var onSelect = function(element) {
                 if (element.checked) {
                     nameArray.push(element.name); // Add if checked
@@ -50,8 +61,18 @@
             };
 
             var nextClicked = function() {
-                
+                for (var i = 0; i < quesId.length; i++) {
+                    if (quesId[i].style.display === "block") {
+                        quesId[i].style.display = "none";
+                        if (i + 1 < quesId.length) {
+                            quesId[i + 1].style.display = "block";
+                        }
+                        break;
+                    }
+                }
             };
+
+            next.addEventListener("click", nextClicked)
         </script>
     </body>
 </html>
