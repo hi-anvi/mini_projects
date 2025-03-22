@@ -33,6 +33,15 @@
                 <label><input type="checkbox" name="R" value="R" onclick="onSelect( this );">Read instructions and expanations<br></label>
             </div>
         </div>
+        <div class="question" id="3">
+            <h1>I need to find the way to a shop that a friend has recommended. I would:</h1>
+            <div>
+                <label><input type="checkbox" name="V" value="V" onclick="onSelect( this );">Use a map<br></label>
+                <label><input type="checkbox" name="R" value="R" onclick="onSelect( this );">Write down street directions I need to remember<br></label>
+                <label><input type="checkbox" name="A" value="A" onclick="onSelect( this );">Ask the directions<br></label>
+                <label><input type="checkbox" name="K" value="K" onclick="onSelect( this );">find out where the shop is in relation to somewhere I know.<br></label>
+            </div>
+        </div>
         <label><input type="submit" id="next"></label>
 
         <script>
@@ -43,19 +52,26 @@
             var quesId = [];
 
             // Add info to quesId
-            for (var j = 1; j <= 2; j++) {
+            for (var j = 1; j <= 3; j++) {
                 quesId.push(document.getElementById(j.toString()));
+                if (j - 1 === 0) {
+                    quesId[j - 1].style.display = "block";
+                } else {
+                    quesId[j - 1].style.display = "none";
+                }
             }
-
-            quesId[1].style.display = "none";
-            quesId[0].style.display = "block";
 
             // On selecting an answer add it to array
             var onSelect = function(element) {
                 if (element.checked) {
                     nameArray.push(element.name); // Add if checked
                 } else {
-                    nameArray = nameArray.filter(name => name !== element.name); // Remove if unchecked
+                    for (var i = 0; i < nameArray.length; i++) {
+                        if (nameArray[i] === element.name) {
+                            nameArray.splice(i, 1);
+                            break;
+                        }
+                    }
                 }
                 console.log(nameArray);
             };
