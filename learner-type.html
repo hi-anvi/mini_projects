@@ -13,18 +13,33 @@
         -->
 
         <div id="done-bar"></div>
-        <h2>When I learn from the Internet I like:</h2>
-        <div>
-            <label><input type="checkbox" name="K" value="K" onclick="onSelect( this );">See videos showing how to do it</label>
-            <label><input type="checkbox" name="A" value="A" onclick="onSelect( this );">Listen to podcasts or other audio sources</label>
-            <label><input type="checkbox" name="V" value="V" onclick="onSelect( this );">Understand designs and visual features</label>
-            <label><input type="checkbox" name="R" value="R" onclick="onSelect( this );">Read instructions and expanations</label>
+        <div class="question">
+            <h1>When I learn from the Internet I like:</h1>
+            <div>
+                <label><input type="checkbox" name="K" value="K" onclick="onSelect( this );">See videos showing how to do it<br></label>
+                <label><input type="checkbox" name="A" value="A" onclick="onSelect( this );">Listen to podcasts or other audio sources<br></label>
+                <label><input type="checkbox" name="V" value="V" onclick="onSelect( this );">Understand designs and visual features<br></label>
+                <label><input type="checkbox" name="R" value="R" onclick="onSelect( this );">Read instructions and expanations<br></label>
+            </div>
         </div>
+        <div class="question">
+            <h1>I want to learn how to play a new board game or card game. I would:</h1>
+            <div>
+                <label><input type="checkbox" name="V" value="V" onclick="onSelect( this );">Use diagrams which explain the rules and tactics<br></label>
+                <label><input type="checkbox" name="V" value="V" onclick="onSelect( this );">Watch others play before joining in<br></label>
+                <label><input type="checkbox" name="A" value="A" onclick="onSelect( this );">Listen to somebody explaining it and ask questions<br></label>
+                <label><input type="checkbox" name="R" value="R" onclick="onSelect( this );">Read instructions and expanations<br></label>
+            </div>
+        </div>
+        <label><input type="submit" id="next">Next</label>
 
         <script>
             // Add variables
             var nameArray = [];
+            var next = document.getElementById("next");
+            var ques = document.getElementsByClassName("question");
 
+            // On seleccting an answer add it to array
             var onSelect = function(element) {
                 if (element.checked) {
                     nameArray.push(element.name); // Add if checked
@@ -32,6 +47,10 @@
                     nameArray = nameArray.filter(name => name !== element.name); // Remove if unchecked
                 }
                 console.log(nameArray);
+            };
+
+            var nextClicked = function() {
+                
             };
         </script>
     </body>
