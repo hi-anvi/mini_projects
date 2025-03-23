@@ -14,41 +14,48 @@
         K = Kinesthetic
         -->
 
-        <div id="done-bar"></div>
-        <div class="question" id="1">
-            <h1>When I learn from the Internet I like:</h1>
-            <div>
-                <label><input type="checkbox" name="K" value="K" onclick="onSelect( this );">See videos showing how to do it<br></label>
-                <label><input type="checkbox" name="A" value="A" onclick="onSelect( this );">Listen to podcasts or other audio sources<br></label>
-                <label><input type="checkbox" name="V" value="V" onclick="onSelect( this );">Understand designs and visual features<br></label>
-                <label><input type="checkbox" name="R" value="R" onclick="onSelect( this );">Read instructions and expanations<br></label>
+        <div id="container"></div>
+            <div id="done-bar"></div>
+            <div class="question" id="1">
+                <h1>When I learn from the Internet I like:</h1>
+                <div>
+                    <label><input type="checkbox" name="K" value="K" onclick="onSelect( this );">See videos showing how to do it<br></label>
+                    <label><input type="checkbox" name="A" value="A" onclick="onSelect( this );">Listen to podcasts or other audio sources<br></label>
+                    <label><input type="checkbox" name="V" value="V" onclick="onSelect( this );">Understand designs and visual features<br></label>
+                    <label><input type="checkbox" name="R" value="R" onclick="onSelect( this );">Read instructions and expanations<br></label>
+                </div>
             </div>
-        </div>
-        <div class="question" id="2">
-            <h1>I want to learn how to play a new board game or card game. I would:</h1>
-            <div>
-                <label><input type="checkbox" name="V" value="V" onclick="onSelect( this );">Use diagrams which explain the rules and tactics<br></label>
-                <label><input type="checkbox" name="V" value="V" onclick="onSelect( this );">Watch others play before joining in<br></label>
-                <label><input type="checkbox" name="A" value="A" onclick="onSelect( this );">Listen to somebody explaining it and ask questions<br></label>
-                <label><input type="checkbox" name="R" value="R" onclick="onSelect( this );">Read instructions and expanations<br></label>
+            <div class="question" id="2">
+                <h1>I want to learn how to play a new board game or card game. I would:</h1>
+                <div>
+                    <label><input type="checkbox" name="V" value="V" onclick="onSelect( this );">Use diagrams which explain the rules and tactics<br></label>
+                    <label><input type="checkbox" name="V" value="V" onclick="onSelect( this );">Watch others play before joining in<br></label>
+                    <label><input type="checkbox" name="A" value="A" onclick="onSelect( this );">Listen to somebody explaining it and ask questions<br></label>
+                    <label><input type="checkbox" name="R" value="R" onclick="onSelect( this );">Read instructions and expanations<br></label>
+                </div>
             </div>
-        </div>
-        <div class="question" id="3">
-            <h1>I need to find the way to a shop that a friend has recommended. I would:</h1>
-            <div>
-                <label><input type="checkbox" name="V" value="V" onclick="onSelect( this );">Use a map<br></label>
-                <label><input type="checkbox" name="R" value="R" onclick="onSelect( this );">Write down street directions I need to remember<br></label>
-                <label><input type="checkbox" name="A" value="A" onclick="onSelect( this );">Ask the directions<br></label>
-                <label><input type="checkbox" name="K" value="K" onclick="onSelect( this );">find out where the shop is in relation to somewhere I know.<br></label>
+            <div class="question" id="3">
+                <h1>I need to find the way to a shop that a friend has recommended. I would:</h1>
+                <div>
+                    <label><input type="checkbox" name="V" value="V" onclick="onSelect( this );">Use a map<br></label>
+                    <label><input type="checkbox" name="R" value="R" onclick="onSelect( this );">Write down street directions I need to remember<br></label>
+                    <label><input type="checkbox" name="A" value="A" onclick="onSelect( this );">Ask the directions<br></label>
+                    <label><input type="checkbox" name="K" value="K" onclick="onSelect( this );">find out where the shop is in relation to somewhere I know.<br></label>
+                </div>
             </div>
+            <label><input type="submit" id="next"></label>
         </div>
-        <label><input type="submit" id="next"></label>
 
         <script>
             // Add variables
             var nameArray = [];
+            var con = document.getElementById("container");
             var next = document.getElementById("next");
             var ques = document.getElementsByClassName("question");
+            var a = 0;
+            var v = 0;
+            var r = 0;
+            var k = 0;
             var quesId = [];
 
             // Add info to quesId
@@ -82,6 +89,20 @@
                         quesId[i].style.display = "none";
                         if (i + 1 < quesId.length) {
                             quesId[i + 1].style.display = "block";
+                        } else {
+                            next.style.display = "none";
+                            for (var q = 0; q < nameArray.length; q++) {
+                                if (nameArray[q] === "A") {
+                                    a++;
+                                } else if (nameArray[q] === "R") {
+                                    r++;
+                                } else if (nameArray[q] === "V") {
+                                    v++;
+                                } else {
+                                    k++;
+                                }
+                            }
+                            con.innerHTML = "<h1>Your Report out of " + nameArray.length + "</h1> <h3>Auditory = " + a + "<br>Visual = " + v + "<br>Reading and Writing = " + r + "<br>Kinesthetic = " + k;
                         }
                         break;
                     }
