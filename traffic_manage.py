@@ -26,29 +26,29 @@ road1 = {
     "road": "road 1",
     "No of cars": 0,
     "Green light": 0,
-    "Red light led": "put led gpio here",
-    "Green light led": "put led gpio here"
+    "Red light led": LED(2),
+    "Green light led": LED(3)
 }
 road2 = {
     "road": "road 2",
-    "No of cars": 0, 
+    "No of cars": 0,
     "Green light": 0,
-    "Red light led": "put led gpio here",
-    "Green light led": "put led gpio here"
+    "Red light led": LED(4),
+    "Green light led": LED(5)
 }
 road3 = {
     "road": "road 3",
     "No of cars": 0,
     "Green light": 0,
-    "Red light led": "put led gpio here",
-    "Green light led": "put led gpio here"
+    "Red light led": LED(6),
+    "Green light led": LED(12)
 }
 road4 = {
     "road": "road 4",
-    "No of cars": 0, 
+    "No of cars": 0,
     "Green light": 0,
-    "Red light led": "put led gpio here",
-    "Green light led": "put led gpio here"
+    "Red light led": LED(13),
+    "Green light led": LED(16)
 }
 roads = [road1, road2, road3, road4]
 
@@ -57,9 +57,6 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 for pin in [IN1, IN2, IN3, IN4]:
     GPIO.setup(pin, GPIO.OUT)
-for road in roads:
-    GPIO.setup(road["Red led"], GPIO.OUT)
-    GPIO.setup(road["Green led"], GPIO.OUT)
 
 # Stepper motor half-step sequence
 SEQ = [
@@ -113,13 +110,13 @@ try:
         # Makes motor rotate 90 degrees
         if i != 0:
             step_motor(STEPS_90)
-        
+
         # Clicks the image
         img = picam2.capture_array()
-        
+
         # Convert to BGR
         img_bgr = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
-        
+
         # Run inference
         results = model(img_bgr)
         detections = results.pandas().xyxy[0]  # finds out which are vehicles
@@ -127,7 +124,7 @@ try:
         roads[i]["No of cars"] = len(vehicles) # puts no of vehicles in dictionary
 
         # Calculates the time needed for green light
-        roads[i]["Green light"] = max(10, round(0.75 * roads[i]["No of cars"]))
+        roads[i]["Green light"] = max(5, round(0.75 * roads[i]["No of cars"]))
 
         # Puts data in csv file
         csv_writer.writerow([time.strftime("%Y-%m-%d %H:%M:%S"), roads[i]["road"], roads[i]["No of cars"], roads[i]["Green light"]])
@@ -139,7 +136,7 @@ try:
         roads[3]["Red light led"].on()
         roads[i]["Green light led"].on()
         roads[i]["Red light led"].off()
-            
+
         # Keeps green light on for that time period
         time.sleep(roads[i]["Green light"])
 
@@ -148,10 +145,10 @@ try:
 
     # Return to original position after 4 roads
     step_motor(-128 * 3)
-        
+
 except KeyboardInterrupt:
     pass
-    
+
 finally:
     picam2.stop()
     csv_file.close()
@@ -163,3 +160,6 @@ print("Exiting...")
 
 # Stops the picam
 picam2.stop()
+
+# Clean up any GPIO
+GPIO.cleanup()
