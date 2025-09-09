@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta charset="utf-8">
         <title>Find out your way to learn</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <style>
+            .checkbox {
+                margin: 5px;
+                margin-bottom: 20px;
+            }
         </style>
     </head>
+
     <body>
         <!--
         V = Visual
@@ -15,35 +22,74 @@
         -->
 
         <div id="container"></div>
-            <div id="done-bar"></div>
-            <div class="question" id="1">
-                <h1>When I learn from the Internet I like:</h1>
-                <div>
-                    <label><input type="checkbox" name="K" value="K" onclick="onSelect( this );">See videos showing how to do it<br></label>
-                    <label><input type="checkbox" name="A" value="A" onclick="onSelect( this );">Listen to podcasts or other audio sources<br></label>
-                    <label><input type="checkbox" name="V" value="V" onclick="onSelect( this );">Understand designs and visual features<br></label>
-                    <label><input type="checkbox" name="R" value="R" onclick="onSelect( this );">Read instructions and expanations<br></label>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="50"
+                style="width: 00%" id="pro-bar">
+            </div>
+        </div>
+        <div class="question" id="1">
+            <h1>When I learn from the Internet I like:</h1>
+            <div>
+                <div class="checkbox">
+                <label><input type="checkbox" name="K" value="K" onclick="onSelect( this );">See videos showing how to
+                    do it<br></label>
+                </div>
+                <div class="checkbox">
+                <label><input type="checkbox" name="A" value="A" onclick="onSelect( this );">Listen to podcasts or other
+                    audio sources<br></label>
+                </div>
+                <div class="checkbox">
+                <label><input type="checkbox" name="V" value="V" onclick="onSelect( this );">Understand designs and
+                    visual features<br></label>
+                </div>
+                <div class="checkbox">
+                <label><input type="checkbox" name="R" value="R" onclick="onSelect( this );">Read instructions and
+                    expanations<br></label>
                 </div>
             </div>
-            <div class="question" id="2">
-                <h1>I want to learn how to play a new board game or card game. I would:</h1>
-                <div>
-                    <label><input type="checkbox" name="V" value="V" onclick="onSelect( this );">Use diagrams which explain the rules and tactics<br></label>
-                    <label><input type="checkbox" name="K" value="K" onclick="onSelect( this );">Watch others play before joining in<br></label>
-                    <label><input type="checkbox" name="A" value="A" onclick="onSelect( this );">Listen to somebody explaining it and ask questions<br></label>
-                    <label><input type="checkbox" name="R" value="R" onclick="onSelect( this );">Read instructions and expanations<br></label>
+        </div>
+        <div class="question" id="2">
+            <h1>I want to learn how to play a new board game or card game. I would:</h1>
+            <div>
+                <div class="checkbox">
+                <label><input type="checkbox" name="V" value="V" onclick="onSelect( this );">Use diagrams which explain
+                    the rules and tactics<br></label>
+                </div>
+                <div class="checkbox">
+                <label><input type="checkbox" name="K" value="K" onclick="onSelect( this );">Watch others play before
+                    joining in<br></label>
+                </div>
+                <div class="checkbox">
+                <label><input type="checkbox" name="A" value="A" onclick="onSelect( this );">Listen to somebody
+                    explaining it and ask questions<br></label>
+                </div>
+                <div class="checkbox">
+                <label><input type="checkbox" name="R" value="R" onclick="onSelect( this );">Read instructions and
+                    expanations<br></label>
                 </div>
             </div>
-            <div class="question" id="3">
-                <h1>I need to find the way to a shop that a friend has recommended. I would:</h1>
-                <div>
-                    <label><input type="checkbox" name="V" value="V" onclick="onSelect( this );">Use a map<br></label>
-                    <label><input type="checkbox" name="R" value="R" onclick="onSelect( this );">Write down street directions I need to remember<br></label>
-                    <label><input type="checkbox" name="A" value="A" onclick="onSelect( this );">Ask the directions<br></label>
-                    <label><input type="checkbox" name="K" value="K" onclick="onSelect( this );">find out where the shop is in relation to somewhere I know.<br></label>
+        </div>
+        <div class="question" id="3">
+            <h1>I need to find the way to a shop that a friend has recommended. I would:</h1>
+            <div>
+                <div class="checkbox">
+                <label><input type="checkbox" name="V" value="V" onclick="onSelect( this );">Use a map<br></label>
+                </div>
+                <div class="checkbox">
+                <label><input type="checkbox" name="R" value="R" onclick="onSelect( this );">Write down street
+                    directions I need to remember<br></label>
+                </div>
+                <div class="checkbox">
+                <label><input type="checkbox" name="A" value="A" onclick="onSelect( this );">Ask the
+                    directions<br></label>
+                </div>
+                <div class="checkbox">
+                <label><input type="checkbox" name="K" value="K" onclick="onSelect( this );">find out where the shop is
+                    in relation to somewhere I know.<br></label>
                 </div>
             </div>
-            <label><input type="submit" id="next"></label>
+        </div>
+        <label class="btn"><input type="submit" id="next"></label>
         </div>
 
         <script>
@@ -52,6 +98,7 @@
             var con = document.getElementById("container");
             var next = document.getElementById("next");
             var ques = document.getElementsByClassName("question");
+            var progressBar = document.getElementById("pro-bar");
             var a = 0;
             var v = 0;
             var r = 0;
@@ -85,6 +132,8 @@
 
             var nextClicked = function() {
                 for (var i = 0; i < quesId.length; i++) {
+                    progressBar.style.width = (parseInt(progressBar.style.width) + 33) + "%";
+                    progressBar.ariaValuenow = progressBar.style.width;
                     if (quesId[i].style.display === "block") {
                         quesId[i].style.display = "none";
                         if (i + 1 < quesId.length) {
@@ -112,4 +161,5 @@
             next.addEventListener("click", nextClicked)
         </script>
     </body>
+
 </html>
